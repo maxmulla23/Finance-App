@@ -7,6 +7,7 @@ using api.Dtos.Stock;
 using api.Helpers;
 using api.Interfaces;
 using api.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
@@ -40,30 +41,37 @@ namespace api.Repository
            return existingStock;
         }
 
-        public async Task<List<Stock>> GetAllAsync(QueryObject queryObject)
+        public async Task<List<Stock>> GetAllAsync([FromQuery] QueryObject query)
         {
             var stocks = _context.Stocks.Include(c => c.Comments).AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(queryObject.CompanyName))
+            if(!string.IsNullOrWhiteSpace(query.CompanyName))
             {
-                stocks = stocks.Where(s => s.CompanyName.Contains(queryObject.CompanyName));
+                stocks = stocks.Where(s => s.CompanyName.Contains(query.CompanyName));
             }
 
-            if(!string.IsNullOrWhiteSpace(queryObject.Symbol))
+            if(!string.IsNullOrWhiteSpace(query.Symbol))
             {
-                stocks = stocks.Where(s => s.Symbol.Contains(queryObject.Symbol));
+                stocks = stocks.Where(s => s.Symbol.Contains(query.Symbol));
             }
 
-            if(!string.IsNullOrWhiteSpace(queryObject.SortBy))
+            if(!string.IsNullOrWhiteSpace(query.SortBy))
             {
-                if(queryObject.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
+                if(query.SortBy.Equals("Symbol", StringComparison.OrdinalIgnoreCase))
                 {
-                    stocks = queryObject.IsDescending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
+                    stocks = query.IsDescending ? stocks.OrderByDescending(s => s.Symbol) : stocks.OrderBy(s => s.Symbol);
                 }
             }
 
-            return await stocks.ToListAsync();
+            var skipNumber = (query.PageNumber - 1) * query.PageSize;
+
+            return await stocks.Skip(skipNumber).Take(query.PageSize).ToListAsync();
         }
+
+        // public Task<List<Stock>> GetAllAsync(QueryObject queryObject)
+        // {
+        //     throw new NotImplementedException();
+        // }
 
         public async Task<Stock?> GetByIdAsync(int id)
         {
