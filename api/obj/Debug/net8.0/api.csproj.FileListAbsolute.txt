@@ -282,3 +282,10 @@
 /home/maxwell/Desktop/projects/Finance-App/api/obj/Debug/net8.0/api.pdb
 /home/maxwell/Desktop/projects/Finance-App/api/obj/Debug/net8.0/api.genruntimeconfig.cache
 /home/maxwell/Desktop/projects/Finance-App/api/obj/Debug/net8.0/ref/api.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.Extensions.Identity.Core.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.Extensions.Identity.Stores.dll
+/home/maxwell/Desktop/projects/Finance-App/api/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
