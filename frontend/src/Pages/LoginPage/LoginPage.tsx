@@ -18,7 +18,11 @@ const validation = Yup.object().shape({
 
 const LoginPage = (props: Props) => {
     const { loginUser } = useAuth()
-    const { register, handleSubmit, formState: { errors }, } = useForm<LoginFormsInputs>({ resolver: yupResolver(validation) });
+    const { 
+      register, 
+      handleSubmit, 
+      formState: { errors }, 
+    } = useForm<LoginFormsInputs>({ resolver: yupResolver(validation) });
 
     const handleLogin = (form: LoginFormsInputs) => {
         loginUser(form.userName, form.password);
